@@ -5,8 +5,10 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const signInwithGoogle = async () => {
@@ -16,6 +18,7 @@ const Login = () => {
 
       if (user) {
         const tkn = await user.getIdToken();
+
         sessionStorage.setItem("accessToken", tkn);
 
         const fetchData = async (tkn) => {
@@ -28,6 +31,7 @@ const Login = () => {
             });
 
             if (response.ok) {
+              navigate("/");
             } else {
               throw new Error("요청이 실패했습니다");
             }
@@ -47,7 +51,8 @@ const Login = () => {
     try {
       await signOut(auth);
       sessionStorage.clear();
-      alert("Logged Out Successfully");
+
+      navigate("/");
     } catch (error) {
       alert("error 발생");
     }
