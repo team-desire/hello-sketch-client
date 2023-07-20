@@ -1,5 +1,10 @@
 import React from "react";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 
 const Login = () => {
   const provider = new GoogleAuthProvider();
@@ -35,6 +40,16 @@ const Login = () => {
       }
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const logoutUser = async () => {
+    try {
+      await signOut(auth);
+      sessionStorage.clear();
+      alert("Logged Out Successfully");
+    } catch (error) {
+      alert("error 발생");
     }
   };
 
@@ -111,24 +126,16 @@ const Login = () => {
                     aria-labelledby="user-menu-button"
                     tabIndex="-1"
                   >
-                    <a
-                      href="#"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-0"
-                    >
+                    <button className="block px-4 py-2 text-sm text-gray-700">
                       내 그림 보기
-                    </a>
-                    <a
-                      href="#"
+                    </button>
+
+                    <button
                       className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex="-1"
-                      id="user-menu-item-1"
+                      onClick={logoutUser}
                     >
                       로그아웃
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
