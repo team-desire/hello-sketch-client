@@ -46,7 +46,7 @@ const NavBar = () => {
                 <img
                   className="h-8 w-8 rounded-full"
                   src="https://lh3.googleusercontent.com/a/AAcHTtc_iQzeM6UY-xwrPg_jMPl2SxW-7fNaVyoSuEmia-qh=s96-c"
-                  alt="userImg"
+                  alt="userImage"
                 />
               </button>
             </div>
