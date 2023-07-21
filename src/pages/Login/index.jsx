@@ -15,16 +15,16 @@ const Login = () => {
       const user = result.user;
 
       if (user) {
-        const tkn = await user.getIdToken();
+        const token = await user.getIdToken();
 
-        sessionStorage.setItem("accessToken", tkn);
+        sessionStorage.setItem("accessToken", token);
 
-        const fetchData = async (tkn) => {
+        const fetchData = async (token) => {
           try {
             const response = await fetch("http://localhost:3000/login", {
               method: "POST",
               headers: {
-                Authorization: tkn,
+                Authorization: token,
               },
             });
 
@@ -38,7 +38,7 @@ const Login = () => {
           }
         };
 
-        await fetchData(tkn);
+        await fetchData(token);
       }
     } catch (error) {
       console.error(error);
