@@ -4,6 +4,7 @@ import "./index.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import "./config/firebase-config";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
