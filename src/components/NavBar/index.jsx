@@ -1,4 +1,3 @@
-import React from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +15,7 @@ const NavBar = () => {
       alert("error 발생");
     }
   };
+
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
