@@ -1,4 +1,3 @@
-import React from "react";
 import NavBar from "../../components/NavBar";
 import Button from "../../components/Button";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
