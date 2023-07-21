@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+
 import NavBar from "../../components/NavBar";
 import Button from "../../components/Button";
-import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const auth = getAuth();
