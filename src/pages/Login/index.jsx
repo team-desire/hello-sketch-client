@@ -25,7 +25,9 @@ const Login = () => {
               method: "POST",
               headers: {
                 Authorization: token,
+                "Content-Type": "application/json",
               },
+              body: JSON.stringify({ email: user.email }),
             });
 
             if (response.ok) {
