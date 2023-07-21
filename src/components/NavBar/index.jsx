@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const navigateToHome = () => {
+    navigate("/");
+  };
   const logoutUser = async () => {
     try {
       const auth = getAuth();
@@ -24,6 +27,7 @@ const NavBar = () => {
             href="#"
             className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
             aria-current="page"
+            onClick={navigateToHome}
           >
             홈으로 가기
           </a>
