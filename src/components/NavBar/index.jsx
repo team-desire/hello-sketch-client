@@ -1,5 +1,6 @@
-import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+
+import { signOut, getAuth } from "firebase/auth";
 
 const NavBar = () => {
   const navigate = useNavigate();

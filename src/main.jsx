@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+
+import "./config/firebase-config";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import "./config/firebase-config";
+
+import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
