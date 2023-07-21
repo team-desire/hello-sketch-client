@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import { signOut, getAuth } from "firebase/auth";
 
+import Button from "../Button";
+
 const NavBar = () => {
   const navigate = useNavigate();
   const navigateToHome = () => {
@@ -35,20 +37,14 @@ const NavBar = () => {
 
           <div className="relative ml-3">
             <div>
-              <button
-                type="button"
-                className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                id="user-menu-button"
-                aria-expanded="false"
-                aria-haspopup="true"
-              >
+              <Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="h-8 w-8 rounded-full"
                   src="https://lh3.googleusercontent.com/a/AAcHTtc_iQzeM6UY-xwrPg_jMPl2SxW-7fNaVyoSuEmia-qh=s96-c"
                   alt="userImage"
                 />
-              </button>
+              </Button>
             </div>
 
             <div
@@ -58,16 +54,16 @@ const NavBar = () => {
               aria-labelledby="user-menu-button"
               tabIndex="-1"
             >
-              <button className="block px-4 py-2 text-sm text-gray-700">
+              <Button style={"block px-4 py-2 text-sm text-gray-700"}>
                 내 그림 보기
-              </button>
+              </Button>
 
-              <button
-                className="block px-4 py-2 text-sm text-gray-700"
+              <Button
+                style={"block px-4 py-2 text-sm text-gray-700"}
                 onClick={logoutUser}
               >
                 로그아웃
-              </button>
+              </Button>
             </div>
           </div>
         </div>
