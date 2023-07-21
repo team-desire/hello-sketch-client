@@ -1,8 +1,50 @@
 import React from "react";
 import NavBar from "../../components/NavBar";
 import Button from "../../components/Button";
+import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+
+  const signInwithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      if (user) {
+        const tkn = await user.getIdToken();
+
+        sessionStorage.setItem("accessToken", tkn);
+
+        const fetchData = async (tkn) => {
+          try {
+            const response = await fetch("http://localhost:3000/login", {
+              method: "POST",
+              headers: {
+                Authorization: tkn,
+              },
+            });
+
+            if (response.ok) {
+              navigate("/");
+            } else {
+              throw new Error("요청이 실패했습니다");
+            }
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+        await fetchData(tkn);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="flex flex-col space-y-40">
@@ -19,7 +61,7 @@ const Login = () => {
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <div>
-                <Button />
+                <Button onClick={signInwithGoogle} />
               </div>
             </div>
           </div>
