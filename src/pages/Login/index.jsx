@@ -19,6 +19,7 @@ const Login = () => {
         const token = await user.getIdToken();
 
         sessionStorage.setItem("accessToken", token);
+        sessionStorage.setItem("userPhotoURL", user.photoURL);
 
         const fetchData = async (token) => {
           try {

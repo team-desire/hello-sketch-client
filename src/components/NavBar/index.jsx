@@ -22,6 +22,8 @@ const NavBar = () => {
     }
   };
 
+  const userPhotoURL = sessionStorage.getItem("userPhotoURL");
+
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2">
@@ -41,7 +43,7 @@ const NavBar = () => {
                 <span className="sr-only">Open user menu</span>
                 <img
                   className="h-8 w-8 rounded-full"
-                  src="https://lh3.googleusercontent.com/a/AAcHTtc_iQzeM6UY-xwrPg_jMPl2SxW-7fNaVyoSuEmia-qh=s96-c"
+                  src={userPhotoURL}
                   alt="userImage"
                 />
               </Button>
