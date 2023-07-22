@@ -20,6 +20,7 @@ const Login = () => {
 
         sessionStorage.setItem("accessToken", token);
         sessionStorage.setItem("userPhotoURL", user.photoURL);
+        sessionStorage.setItem("userEmail", user.email);
 
         const fetchData = async (token) => {
           try {
