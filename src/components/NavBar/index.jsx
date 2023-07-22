@@ -9,6 +9,7 @@ const NavBar = () => {
   const navigateToHome = () => {
     navigate("/");
   };
+
   const logoutUser = async () => {
     try {
       const auth = getAuth();
