@@ -41,7 +41,7 @@ const Carousel = () => {
         disabled={currentPage === 1}
         style={`${currentPage === 1 && "disabled:opacity-25"}`}
       >
-        {<AiOutlineCaretLeft />}
+        {<AiOutlineCaretLeft size={40} />}
       </Button>
       <div className="flex my-16">
         {images.map((item, index) => (
@@ -58,7 +58,7 @@ const Carousel = () => {
         disabled={currentPage === totalPages}
         style={` ${currentPage === totalPages && "disabled:opacity-25"}`}
       >
-        {<AiOutlineCaretRight />}
+        {<AiOutlineCaretRight size={40} />}
       </Button>
     </div>
   );
