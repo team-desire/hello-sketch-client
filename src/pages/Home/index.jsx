@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 
 import Button from "../../components/Button";
+import Carousel from "../../components/Carousel";
 import NavBar from "../../components/NavBar";
 
 const Home = () => {
@@ -62,6 +63,7 @@ const Home = () => {
               <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
                 collection of illustrations of people for designer
               </h2>
+              <Carousel />
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <div>
