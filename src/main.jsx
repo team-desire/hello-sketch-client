@@ -6,6 +6,7 @@ import "./config/firebase-config";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Sketch from "./pages/Sketch";
 
 import "./index.css";
 
@@ -15,6 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/sketch" element={<Sketch />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
