@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AiOutlineCaretRight, AiOutlineCaretLeft } from "react-icons/ai";
 
 import Button from "../Button";
 
@@ -34,27 +35,30 @@ const Carousel = () => {
   };
 
   return (
-    <div className="flex">
-      <Button onClick={handlePrev} disabled={currentPage === 1}>
-        Previous
+    <div className="flex justify-evenly">
+      <Button
+        onClick={handlePrev}
+        disabled={currentPage === 1}
+        style={`${currentPage === 1 && "disabled:opacity-25"}`}
+      >
+        {<AiOutlineCaretLeft />}
       </Button>
-      <div className="flex justify-evenly">
+      <div className="flex my-16">
         {images.map((item, index) => (
           <img
-            className="w-3/12"
+            className="w-20 mx-6"
             key={item.imageUrl}
             src={item.imageUrl}
             alt={`Image ${index + 1}`}
           />
         ))}
       </div>
-
       <Button
         onClick={handleNext}
         disabled={currentPage === totalPages}
-        style={`bg-gray-500 ${currentPage === totalPages && "bg-red-300"}`}
+        style={` ${currentPage === totalPages && "disabled:opacity-25"}`}
       >
-        Next
+        {<AiOutlineCaretRight />}
       </Button>
     </div>
   );
