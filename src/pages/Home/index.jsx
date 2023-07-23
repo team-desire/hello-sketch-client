@@ -52,36 +52,36 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex flex-col space-y-40">
+      <div className="flex flex-col space-y-20">
         <NavBar />
         <div>
-          <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-violet-200 border-2 border-indigo-600 mx-56">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-              <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                Welcome Hello, sketch!
-              </h2>
-              <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                collection of illustrations of people for designer
+          <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 bg-zinc-100 border-2 border-blue-800 mx-56">
+            <div className="sm:mx-auto sm:w-full">
+              <h1 className="text-center text-4xl font-bold mt-0">
+                Welcome to Hello, sketch!
+              </h1>
+              <h2 className="my-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Illustration Toolbox for Everyone
               </h2>
               <Carousel />
             </div>
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-2.5 sm:mx-auto sm:w-full sm:max-w-sm">
               <div>
                 {!!sessionStorage.accessToken ? (
                   <div className="flex flex-col">
                     <Button
                       style={
-                        "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        "flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       }
                     >
-                      내 그림 보기
+                      Create Sketch
                     </Button>
                   </div>
                 ) : (
                   <Button
                     onClick={signInwithGoogle}
                     style={
-                      "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      "flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     }
                   >
                     sign in with Google

@@ -28,16 +28,16 @@ const NavBar = () => {
   const userPhotoURL = sessionStorage.getItem("userPhotoURL");
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-zinc-100">
       <div className="mx-auto max-w-7xl px-2">
         <div className="relative flex h-16 items-center justify-between">
           <Button
             onClick={navigateToHome}
             style={
-              "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+              "bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
             }
           >
-            홈으로 가기
+            Home
           </Button>
           <div>
             {!!sessionStorage.accessToken ? (
@@ -64,14 +64,14 @@ const NavBar = () => {
                 aria-labelledby="user-menu-button"
                 tabIndex="-1"
               >
-                <Button style={"block px-4 py-2 text-sm text-gray-700"}>
-                  내 그림 보기
+                <Button style={"block px-4 py-2 text-sm text-gray-700 mx-auto"}>
+                  My Sketches
                 </Button>
                 <Button
-                  style={"block px-4 py-2 text-sm text-gray-700"}
+                  style={"block px-4 py-2 text-sm text-gray-700 mx-auto"}
                   onClick={logoutUser}
                 >
-                  로그아웃
+                  Logout
                 </Button>
               </div>
             )}
