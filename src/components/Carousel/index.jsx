@@ -4,21 +4,26 @@ import Button from "../Button";
 
 const Carousel = () => {
   const [images, setImages] = useState([]);
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSketches = async () => {
       try {
-        const response = await fetch("/serverData.json");
-        const data = await response.json();
-        setImages(data.images);
+        const response = await fetch(
+          `http://localhost:3000/sketches?per_page=3&page=${currentPage}`,
+        );
+
+        const sketches = await response.json();
+        setImages(sketches.sketchesUrl.list);
+        setTotalPages(sketches.sketchesUrl.totalPages);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching sketches:", error);
       }
     };
 
-    fetchData();
-  }, []);
+    fetchSketches();
+  }, [currentPage]);
 
   const handlePrev = () => {
     setCurrentPage((currentPage) => currentPage - 1);
@@ -30,18 +35,27 @@ const Carousel = () => {
 
   return (
     <div className="flex">
-      <Button onClick={handlePrev}>Previous</Button>
+      <Button onClick={handlePrev} disabled={currentPage === 1}>
+        Previous
+      </Button>
       <div className="flex justify-evenly">
-        {images.slice(startIndex, startIndex + 3).map((imageUrl, index) => (
+        {images.map((item, index) => (
           <img
             className="w-3/12"
-            key={index}
-            src={imageUrl}
-            alt={`Image ${startIndex + index + 1}`}
+            key={item.imageUrl}
+            src={item.imageUrl}
+            alt={`Image ${index + 1}`}
           />
         ))}
       </div>
-      <Button onClick={handleNext}>Next</Button>
+
+      <Button
+        onClick={handleNext}
+        disabled={currentPage === totalPages}
+        style={`bg-gray-500 ${currentPage === totalPages && "bg-red-300"}`}
+      >
+        Next
+      </Button>
     </div>
   );
 };
