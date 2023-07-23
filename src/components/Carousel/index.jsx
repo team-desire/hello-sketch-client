@@ -21,20 +21,12 @@ const Carousel = () => {
   }, []);
 
   const handlePrev = () => {
-    setCurrentSlideIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + Math.ceil(images.length / 3)) %
-        Math.ceil(images.length / 3),
-    );
+    setCurrentPage((currentPage) => currentPage - 1);
   };
 
   const handleNext = () => {
-    setCurrentSlideIndex(
-      (prevIndex) => (prevIndex + 1) % Math.ceil(images.length / 3),
-    );
+    setCurrentPage((currentPage) => currentPage + 1);
   };
-
-  const startIndex = currentSlideIndex * 3;
 
   return (
     <div className="flex">
