@@ -67,14 +67,33 @@ const Home = () => {
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
               <div>
-                <Button
-                  onClick={signInwithGoogle}
-                  style={
-                    "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  }
-                >
-                  sign in with Google
-                </Button>
+                {!!sessionStorage.accessToken ? (
+                  <div className="flex flex-col">
+                    <Button
+                      style={
+                        "rounded - full bg-purple-400 border-2 border-indigo-600"
+                      }
+                    >
+                      내 그림 보기
+                    </Button>
+                    <Button
+                      style={
+                        "rounded - full bg-purple-400 border-2 border-indigo-600"
+                      }
+                    >
+                      그림 생성하기
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={signInwithGoogle}
+                    style={
+                      "flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    }
+                  >
+                    sign in with Google
+                  </Button>
+                )}
               </div>
             </div>
           </div>
