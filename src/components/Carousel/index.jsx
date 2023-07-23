@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import Button from "../Button";
+
 const Carousel = () => {
   const [images, setImages] = useState([]);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -36,7 +38,7 @@ const Carousel = () => {
 
   return (
     <div className="flex">
-      <button onClick={handlePrev}>Previous</button>
+      <Button onClick={handlePrev}>Previous</Button>
       <div className="flex justify-evenly">
         {images.slice(startIndex, startIndex + 3).map((imageUrl, index) => (
           <img
@@ -47,7 +49,7 @@ const Carousel = () => {
           />
         ))}
       </div>
-      <button onClick={handleNext}>Next</button>
+      <Button onClick={handleNext}>Next</Button>
     </div>
   );
 };
