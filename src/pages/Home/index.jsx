@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
+import { v4 as uuidv4 } from "uuid";
 
 import Button from "../../components/Button";
 import Carousel from "../../components/Carousel";
@@ -70,6 +71,11 @@ const Home = () => {
                 {!!sessionStorage.accessToken ? (
                   <div className="flex flex-col">
                     <Button
+                      onClick={() => {
+                        const sketchId = uuidv4();
+
+                        navigate(`/sketch/${sketchId}`);
+                      }}
                       style={
                         "flex w-full justify-center rounded-md bg-blue-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       }
