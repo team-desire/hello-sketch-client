@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { BsToggleOff, BsToggleOn } from "react-icons/bs";
-// import { GoCopy } from "react-icons/go";
 
 import Button from "../Button";
 
