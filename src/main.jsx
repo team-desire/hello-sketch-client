@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sketch" element={<Sketch />} />
+        <Route path="/sketch/:sketch_id" element={<Sketch />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
