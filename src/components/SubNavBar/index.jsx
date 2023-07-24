@@ -31,8 +31,8 @@ const SubNavBar = () => {
             Save
           </Button>
           <div className="flex items-center">
-            <label htmlFor="public">{isPublic ? "Public" : "Private"}</label>
-            <Button id={"public"} onClick={handleToggle}>
+            {isPublic ? "Public" : "Private"}
+            <Button onClick={handleToggle}>
               {isPublic ? <BsToggleOn size={25} /> : <BsToggleOff size={25} />}
             </Button>
             <Button
