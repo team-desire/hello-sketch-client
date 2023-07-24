@@ -23,17 +23,34 @@ const SubNavBar = () => {
     <nav className="bg-zinc-100">
       <div className="mx-auto max-w-7xl px-2">
         <div className="relative flex h-16 items-center justify-between">
-          <Button onClick={handleToggle}>
-            {isPublic ? <BsToggleOn size={25} /> : <BsToggleOff size={25} />}
-          </Button>
           <Button
-            onClick={() => handleCopyUrl(window.location.href)}
             style={
               "bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
             }
           >
-            copy url
+            Save
           </Button>
+          <div className="flex items-center">
+            <label htmlFor="public">{isPublic ? "Public" : "Private"}</label>
+            <Button id={"public"} onClick={handleToggle}>
+              {isPublic ? <BsToggleOn size={25} /> : <BsToggleOff size={25} />}
+            </Button>
+            <Button
+              onClick={() => handleCopyUrl(window.location.href)}
+              style={
+                "mx-5 bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
+              }
+            >
+              Copy Url
+            </Button>
+            <Button
+              style={
+                "mx-5 bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
+              }
+            >
+              Download Image
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
