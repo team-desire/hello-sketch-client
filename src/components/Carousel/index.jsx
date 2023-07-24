@@ -19,7 +19,7 @@ const Carousel = () => {
         setImages(sketches.sketchesUrl.list);
         setTotalPages(sketches.sketchesUrl.totalPages);
       } catch (error) {
-        console.error("Error fetching sketches:", error);
+        console.error("Error fetching sketches:", error.message);
       }
     };
 
