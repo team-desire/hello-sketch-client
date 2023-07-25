@@ -7,6 +7,7 @@ import Button from "../Button";
 const SubNavBar = () => {
   const [isPublic, setIsPublic] = useState(true);
   const { sketch_id } = useParams();
+  const userId = sessionStorage.getItem("userEmail");
 
   const handleToggle = () => {
     setIsPublic((isPublic) => !isPublic);
@@ -18,6 +19,26 @@ const SubNavBar = () => {
       alert("복사되었습니다!");
     } catch (error) {
       alert("복사에 실패했습니다");
+    }
+  };
+
+  const handleDownloadImg = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/${userId}/sketches/${sketch_id}`,
+      );
+      const json = await response.json();
+      const imageUrl = json.url;
+
+      const a = document.createElement("a");
+
+      a.href = imageUrl;
+      a.download = "sketch.png";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Failed to download the image", error);
     }
   };
 
@@ -48,6 +69,7 @@ const SubNavBar = () => {
                   Copy Url
                 </Button>
                 <Button
+                  onClick={handleDownloadImg}
                   style={
                     "mx-5 bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
                   }
