@@ -25,20 +25,28 @@ const SubNavBar = () => {
   const handleDownloadImg = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${userId}/sketches/${sketch_id}`,
+        `http://localhost:3000/users/${userId}/sketches/${sketch_id}/download_url`,
       );
-      const json = await response.json();
-      const imageUrl = json.url;
 
+      const json = await response.json();
+      const s3ItemUrl = json.url;
+      const s3Response = await fetch(s3ItemUrl);
+
+      if (!s3Response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+
+      const blob = await s3Response.blob();
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
 
-      a.href = imageUrl;
+      a.href = url;
       a.download = "sketch.png";
-      document.body.appendChild(a);
       a.click();
-      document.body.removeChild(a);
+
+      URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Failed to download the image", error);
+      console.error("Failed to download the image", error.message);
     }
   };
 
