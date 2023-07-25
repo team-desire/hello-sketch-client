@@ -1,5 +1,6 @@
 import NavBar from "../../components/NavBar";
 import SubNavBar from "../../components/SubNavBar";
+import Canvas from "../../components/Canvas/canvas";
 
 const Sketch = () => {
   return (
@@ -16,12 +17,10 @@ const Sketch = () => {
           />
         </div>
         <div className="flex flex-grow">
-          <div className="w-1/3 bg-gray-200 p-4">
+          <div className="w-1/2 bg-gray-200 p-4">
             <p>This is the left column.</p>
           </div>
-          <div className="w-2/3 bg-gray-300 p-4">
-            <p>This is the right column.</p>
-          </div>
+          <Canvas style={"w-1/2 bg-gray-300 p-4"} />
         </div>
       </div>
     </>
