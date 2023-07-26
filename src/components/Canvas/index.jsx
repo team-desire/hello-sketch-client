@@ -1,4 +1,4 @@
-const Canvas = ({ style }) => {
+const Canvas = ({ style, sketchTitle, handleSketchTitle }) => {
   return (
     <div className={style}>
       <div className="flex justify-center my-6">
@@ -7,6 +7,8 @@ const Canvas = ({ style }) => {
           placeholder="Title"
           type="text"
           name="title"
+          value={sketchTitle}
+          onChange={handleSketchTitle}
         />
       </div>
       <div className="box-content h-4/5 p-4 border-4 bg-white"></div>
