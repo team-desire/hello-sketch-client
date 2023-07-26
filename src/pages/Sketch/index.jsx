@@ -22,7 +22,7 @@ const Sketch = () => {
           <Canvas
             style={"w-1/2 bg-gray-300 p-4"}
             sketchTitle={sketchTitle}
-            handleSketchTitle={handleSketchTitle}
+            onChange={handleSketchTitle}
           />
         </div>
       </div>
