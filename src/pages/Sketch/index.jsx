@@ -3,7 +3,7 @@ import { useState } from "react";
 import NavBar from "../../components/NavBar";
 import SubNavBar from "../../components/SubNavBar";
 import Canvas from "../../components/Canvas";
-import UnitSelector from "../../components/UnitSelector";
+import UnitSelectorContainer from "../../components/UnitSelectorContainer";
 
 const Sketch = () => {
   const [sketchTitle, setSketchTitle] = useState("");
@@ -18,7 +18,7 @@ const Sketch = () => {
         <NavBar />
         <SubNavBar />
         <div className="flex flex-grow">
-          <UnitSelector style={"w-1/2 bg-gray-200 p-4"} />
+          <UnitSelectorContainer style={"w-1/2 bg-gray-200 p-4"} />
           <Canvas
             style={"w-1/2 bg-gray-300 p-4"}
             sketchTitle={sketchTitle}
