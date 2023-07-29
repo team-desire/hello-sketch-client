@@ -1,4 +1,5 @@
 import NavBar from "../../components/NavBar";
+import SketchCard from "../../components/SketchCard";
 
 const MySketches = () => {
   return (
@@ -8,7 +9,7 @@ const MySketches = () => {
         {Array(6)
           .fill(null)
           .map((_, index) => (
-            <div key={index} className="border p-4"></div>
+            <SketchCard key={index} />
           ))}
       </main>
       <footer className="bg-zinc-100 h-20 flex justify-center items-center">
