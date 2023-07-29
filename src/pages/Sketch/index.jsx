@@ -7,6 +7,12 @@ import UnitSelectorContainer from "../../components/UnitSelectorContainer";
 
 import getSvgDataArray from "../../utils/getSvgDataArray";
 
+import {
+  BODY_UNITS,
+  FACE_UNITS,
+  HEAD_UNITS,
+} from "../../components/UnitSelector/UnitSelector.mock";
+
 const Sketch = () => {
   const [sketchTitle, setSketchTitle] = useState("");
   const [elements, setElements] = useState({
@@ -15,10 +21,12 @@ const Sketch = () => {
     body: { svgData: null },
   });
 
+  const UNIT_URLS = [HEAD_UNITS[0], FACE_UNITS[0], BODY_UNITS[0]];
+
   useEffect(() => {
-    const fetchUnitData = async (unitUrls) => {
+    const getUnitData = async () => {
       try {
-        const svgDataArray = await getSvgDataArray(unitUrls);
+        const svgDataArray = await getSvgDataArray(UNIT_URLS);
 
         setElements({
           head: { svgData: svgDataArray[0] },
@@ -26,11 +34,11 @@ const Sketch = () => {
           body: { svgData: svgDataArray[2] },
         });
       } catch (error) {
-        console.error("Error fetching data:");
+        console.error(error);
       }
     };
 
-    fetchUnitData();
+    getUnitData();
   }, []);
 
   const handleSketchTitle = (event) => {
