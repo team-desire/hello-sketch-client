@@ -1,5 +1,7 @@
+import NavBar from "../../components/NavBar";
+
 const MySketches = () => {
-  return <h1>My sketches!</h1>;
+  return <NavBar />;
 };
 
 export default MySketches;
