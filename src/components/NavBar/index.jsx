@@ -8,7 +8,16 @@ import Button from "../Button";
 const NavBar = () => {
   const [toShowDropDownMenu, setToShowDropDownMenu] = useState(false);
   const navigate = useNavigate();
+
+  const navigateToMySketches = () => {
+    setToShowDropDownMenu(!toShowDropDownMenu);
+
+    navigate("/my-sketches");
+  };
+
   const navigateToHome = () => {
+    setToShowDropDownMenu(!toShowDropDownMenu);
+
     navigate("/");
   };
 
@@ -64,7 +73,10 @@ const NavBar = () => {
                 aria-labelledby="user-menu-button"
                 tabIndex="-1"
               >
-                <Button style={"block px-4 py-2 text-sm text-gray-700 mx-auto"}>
+                <Button
+                  style={"block px-4 py-2 text-sm text-gray-700 mx-auto"}
+                  onClick={navigateToMySketches}
+                >
                   My Sketches
                 </Button>
                 <Button
