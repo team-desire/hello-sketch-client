@@ -34,7 +34,7 @@ const Sketch = () => {
           body: { svgData: svgDataArray[2] },
         });
       } catch (error) {
-        console.error(error);
+        console.error("Error");
       }
     };
 
