@@ -36,32 +36,32 @@ const ChildCanvas = ({
     img.src = dataUrl;
   }, [width, height, svgData, isSelected]);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (event) => {
     setIsSelected(true);
-    setStartDrag({ x: e.clientX, y: e.clientY });
+    setStartDrag({ x: event.clientX, y: event.clientY });
   };
 
   const handleMouseUp = () => {
     setStartDrag(null);
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (event) => {
     if (!startDrag) return;
 
-    const offsetX = e.clientX - startDrag.x;
-    const offsetY = e.clientY - startDrag.y;
+    const offsetX = event.clientX - startDrag.x;
+    const offsetY = event.clientY - startDrag.y;
 
     setPosition((prevPosition) => ({
       x: Math.min(Math.max(0, prevPosition.x + offsetX), parentWidth - width),
       y: Math.min(Math.max(0, prevPosition.y + offsetY), parentHeight - height),
     }));
 
-    setStartDrag({ x: e.clientX, y: e.clientY });
+    setStartDrag({ x: event.clientX, y: event.clientY });
   };
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (canvasRef.current && !canvasRef.current.contains(e.target)) {
+    const handleClickOutside = (event) => {
+      if (canvasRef.current && !canvasRef.current.contains(event.target)) {
         setIsSelected(false);
       }
     };
