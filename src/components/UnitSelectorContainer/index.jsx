@@ -1,18 +1,26 @@
 import UnitSelector from "../UnitSelector";
 
-// NOTE: 현재는 mock data 활용중!
-import {
-  BODY_UNITS,
-  FACE_UNITS,
-  HEAD_UNITS,
-} from "../UnitSelector/UnitSelector.mock";
-
-const UnitSelectorContainer = ({ style }) => {
+const UnitSelectorContainer = ({ style, elements, onElementChange }) => {
   return (
     <div className={style}>
-      <UnitSelector units={HEAD_UNITS} title="Head" unitType="head" />
-      <UnitSelector units={FACE_UNITS} title="Face" unitType="face" />
-      <UnitSelector units={BODY_UNITS} title="Body" unitType="body" />
+      <UnitSelector
+        title="Head"
+        unitType="head"
+        elements={elements}
+        onElementChange={onElementChange}
+      />
+      <UnitSelector
+        title="Face"
+        unitType="face"
+        elements={elements}
+        onElementChange={onElementChange}
+      />
+      <UnitSelector
+        title="Body"
+        unitType="body"
+        elements={elements}
+        onElementChange={onElementChange}
+      />
     </div>
   );
 };
