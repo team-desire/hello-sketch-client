@@ -21,6 +21,8 @@ const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
           svgData={elements.head.svgData}
           top={50}
           left={250}
+          parentWidth={700}
+          parentHeight={700}
         />
         <ChildCanvas
           width={200}
@@ -28,6 +30,8 @@ const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
           svgData={elements.face.svgData}
           top={250}
           left={250}
+          parentWidth={700}
+          parentHeight={700}
         />
         <ChildCanvas
           width={200}
@@ -35,6 +39,8 @@ const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
           svgData={elements.body.svgData}
           top={450}
           left={250}
+          parentWidth={700}
+          parentHeight={700}
         />
       </ParentCanvas>
     </div>
