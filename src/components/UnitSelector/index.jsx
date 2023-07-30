@@ -6,11 +6,10 @@ import getSvgDataArray from "../../utils/getSvgDataArray";
 
 const UnitSelector = ({ elements, onElementChange, unitType, title }) => {
   const [unitData, setUnitData] = useState([]);
-
-  const ITEMS_PER_PAGE = 3;
-
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  const ITEMS_PER_PAGE = 3;
 
   const fetchUnits = async () => {
     try {
