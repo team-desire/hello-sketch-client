@@ -2,58 +2,72 @@ import { useEffect, useState } from "react";
 
 import ColorPicker from "../ColorPicker";
 import Carousel from "../Carousel";
+import getSvgDataArray from "../../utils/getSvgDataArray";
 
-import { TOTAL_PAGES } from "./UnitSelector.mock";
-import { fetchData } from "../../utils/fetchS3Objects";
+const UnitSelector = ({ elements, onElementChange, unitType, title }) => {
+  const [unitData, setUnitData] = useState([]);
 
-const UnitSelector = ({ units, unitType, title }) => {
+  const ITEMS_PER_PAGE = 3;
+
   const [currentPage, setCurrentPage] = useState(1);
-  const [color, setColor] = useState("#000000");
-  const [svgData, setSvgData] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchUnits = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/units?unitType=${unitType}&page=${currentPage}&per_page=${ITEMS_PER_PAGE}`,
+      );
+
+      const { units } = await response.json();
+      const { list, totalPages } = units;
+      const urls = list.map((item) => item.url);
+      const unitSvgData = await getSvgDataArray(urls);
+
+      setUnitData(unitSvgData);
+      setTotalPages(totalPages);
+    } catch (error) {
+      console.error("Error");
+    }
+  };
 
   const handleNextButtonClick = () => {
-    if (currentPage < TOTAL_PAGES) {
-      setCurrentPage((currentPage) => currentPage + 1);
-    }
+    setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
   };
 
   const handlePrevButtonClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage((currentPage) => currentPage - 1);
-    }
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
   };
 
   const handleColorChange = (event) => {
-    setColor(event.target.value);
+    onElementChange(unitType, {
+      ...elements[unitType],
+      fillColor: event.target.value,
+    });
   };
 
   useEffect(() => {
-    const fetchDataAndSetData = async () => {
-      try {
-        const svgDataArray = await fetchData(units);
-        setSvgData(svgDataArray);
-      } catch (error) {
-        console.error("Error fetching data");
-      }
-    };
-
-    fetchDataAndSetData();
-  }, [units]);
+    fetchUnits();
+  }, [currentPage]);
 
   return (
     <div className="h-1/3 bg-gray-300 border-t border-gray-200 mx-auto px-10">
       <h1 className="text-xl">{title}</h1>
-      <ColorPicker color={color} onColorChange={handleColorChange} />
-      {svgData && (
-        <Carousel
-          items={svgData}
-          currentPage={currentPage}
-          totalPages={TOTAL_PAGES}
-          onPrevButtonClick={handlePrevButtonClick}
-          onNextButtonClick={handleNextButtonClick}
-          color={color}
-        />
-      )}
+      <ColorPicker
+        color={elements[unitType]?.fillColor}
+        onColorChange={handleColorChange}
+        toShow={unitType !== "face"}
+      />
+      <Carousel
+        items={unitData}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPrevButtonClick={handlePrevButtonClick}
+        onNextButtonClick={handleNextButtonClick}
+        fillColor={elements[unitType]?.fillColor}
+        elements={elements}
+        onElementChange={onElementChange}
+        unitType={unitType}
+      />
     </div>
   );
 };
