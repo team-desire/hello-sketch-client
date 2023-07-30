@@ -1,25 +1,51 @@
 import { useRef, useEffect, useState } from "react";
 
+import { Z_INDEX } from "../../constants";
+
 const ChildCanvas = ({
+  svgData,
   width,
   height,
-  svgData,
   top,
   left,
+  fillColor,
+  elements,
+  onElementChange,
+  unitType,
   parentWidth,
   parentHeight,
+  isFromCarousel,
 }) => {
   const canvasRef = useRef(null);
+
   const [position, setPosition] = useState({ x: left, y: top });
   const [startDrag, setStartDrag] = useState(null);
   const [isSelected, setIsSelected] = useState(false);
+
+  const updateSvgData = (svgData, fillColor) => {
+    const parser = new DOMParser();
+    const svgDOM = parser.parseFromString(svgData, "image/svg+xml");
+
+    const targets = svgDOM.querySelectorAll(".target");
+
+    if (targets && targets.length > 0) {
+      targets.forEach((target) => target.setAttribute("fill", fillColor));
+    }
+
+    const updatedSvgData = new XMLSerializer().serializeToString(svgDOM);
+
+    return updatedSvgData;
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
     const img = new Image();
-    const encodedSvgData = encodeURIComponent(svgData);
+
+    const updatedSvgData = updateSvgData(svgData, fillColor);
+
+    const encodedSvgData = encodeURIComponent(updatedSvgData);
     const dataUrl = `data:image/svg+xml;charset=utf-8,${encodedSvgData}`;
 
     img.onload = () => {
@@ -34,7 +60,7 @@ const ChildCanvas = ({
     };
 
     img.src = dataUrl;
-  }, [width, height, svgData, isSelected]);
+  }, [width, height, svgData, fillColor, isSelected]);
 
   const handleMouseDown = (event) => {
     setIsSelected(true);
@@ -91,9 +117,17 @@ const ChildCanvas = ({
         ref={canvasRef}
         width={width}
         height={height}
+        style={{ position: "absolute", top, left, zIndex: Z_INDEX[unitType] }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
+        onClick={() => {
+          if (isFromCarousel) {
+            onElementChange(unitType, { ...elements[unitType], svgData });
+          }
+
+          return;
+        }}
       />
       {isSelected && (
         <>
