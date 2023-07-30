@@ -32,8 +32,8 @@ const CanvasContainer = ({
           parentHeight={700}
         />
         <ChildCanvas
-          width={200}
-          height={200}
+          width={150}
+          height={100}
           svgData={elements.face?.svgData}
           top={250}
           left={250}
