@@ -1,7 +1,12 @@
 import ChildCanvas from "../ChildCanvas";
 import ParentCanvas from "../ParentCanvas";
 
-const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
+const CanvasContainer = ({
+  style,
+  sketchTitle,
+  onSketchTitleChange,
+  elements,
+}) => {
   return (
     <div className={style}>
       <div className="flex justify-center my-6">
@@ -11,34 +16,39 @@ const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
           type="text"
           name="title"
           value={sketchTitle}
-          onChange={onChange}
+          onChange={onSketchTitleChange}
         />
       </div>
       <ParentCanvas width={700} height={700}>
         <ChildCanvas
           width={200}
           height={200}
-          svgData={elements.head.svgData}
+          svgData={elements.head?.svgData}
           top={50}
           left={250}
+          fillColor={elements.head?.fillColor}
+          unitType={"head"}
           parentWidth={700}
           parentHeight={700}
         />
         <ChildCanvas
           width={200}
           height={200}
-          svgData={elements.face.svgData}
+          svgData={elements.face?.svgData}
           top={250}
           left={250}
+          unitType={"face"}
           parentWidth={700}
           parentHeight={700}
         />
         <ChildCanvas
           width={200}
           height={200}
-          svgData={elements.body.svgData}
+          svgData={elements.body?.svgData}
           top={450}
           left={250}
+          fillColor={elements.body?.fillColor}
+          unitType={"body"}
           parentWidth={700}
           parentHeight={700}
         />
