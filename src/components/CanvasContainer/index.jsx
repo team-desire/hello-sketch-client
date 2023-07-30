@@ -1,13 +1,7 @@
 import ChildCanvas from "../ChildCanvas";
 import ParentCanvas from "../ParentCanvas";
 
-const CanvasContainer = ({
-  style,
-  sketchTitle,
-  onChange,
-  elements,
-  onElementChange,
-}) => {
+const CanvasContainer = ({ style, sketchTitle, onChange, elements }) => {
   return (
     <div className={style}>
       <div className="flex justify-center my-6">
