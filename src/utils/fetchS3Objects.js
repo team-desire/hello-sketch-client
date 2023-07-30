@@ -9,7 +9,7 @@ export const fetchData = async (urls) => {
     const svgDataArray = await Promise.all(fetchPromises);
 
     return svgDataArray;
-  } catch (err) {
+  } catch (error) {
     console.error("Error fetching s3 objects");
   }
 };

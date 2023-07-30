@@ -39,14 +39,14 @@ const Login = () => {
               throw new Error("요청이 실패했습니다");
             }
           } catch (error) {
-            console.error(error);
+            console.error("Error");
           }
         };
 
         await fetchData(token);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error");
     }
   };
 

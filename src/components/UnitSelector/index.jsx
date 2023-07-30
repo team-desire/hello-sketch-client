@@ -33,7 +33,7 @@ const UnitSelector = ({ units, unitType, title }) => {
         const svgDataArray = await fetchData(units);
         setSvgData(svgDataArray);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching data");
       }
     };
 
