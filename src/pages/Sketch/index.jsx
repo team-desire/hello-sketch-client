@@ -45,13 +45,6 @@ const Sketch = () => {
     setSketchTitle(event.target.value);
   };
 
-  const handleElementChange = (unitType, newElementData) => {
-    setElements((prevElements) => ({
-      ...prevElements,
-      [unitType]: newElementData,
-    }));
-  };
-
   return (
     <div className="flex flex-col min-h-screen">
       <NavBar />
@@ -63,7 +56,6 @@ const Sketch = () => {
           sketchTitle={sketchTitle}
           onChange={handleSketchTitle}
           elements={elements}
-          onElementChange={handleElementChange}
         />
       </div>
     </div>
