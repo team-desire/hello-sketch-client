@@ -3,6 +3,7 @@ const getSvgDataArray = async (urls) => {
     const svgDataArray = await Promise.all(
       urls.map(async (url) => {
         const response = await fetch(url);
+
         return response.text();
       }),
     );
