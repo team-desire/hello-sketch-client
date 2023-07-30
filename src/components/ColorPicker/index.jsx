@@ -1,9 +1,7 @@
-const ColorPicker = ({ color, onColorChange }) => {
-  return (
-    <div>
-      <input type="color" value={color} onChange={onColorChange} />
-    </div>
-  );
+const ColorPicker = ({ color, onColorChange, toShow }) => {
+  if (toShow) {
+    return <input type="color" value={color} onChange={onColorChange} />;
+  }
 };
 
 export default ColorPicker;
