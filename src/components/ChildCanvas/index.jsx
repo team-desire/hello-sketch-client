@@ -44,7 +44,6 @@ const ChildCanvas = ({
     const img = new Image();
 
     const updatedSvgData = updateSvgData(svgData, fillColor);
-
     const encodedSvgData = encodeURIComponent(updatedSvgData);
     const dataUrl = `data:image/svg+xml;charset=utf-8,${encodedSvgData}`;
 
