@@ -40,13 +40,13 @@ const Home = () => {
               throw new Error("요청이 실패했습니다");
             }
           } catch (error) {
-            console.log(error.message);
+            console.log("Error");
           }
         };
         await fetchData(token);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error");
     }
   };
 
