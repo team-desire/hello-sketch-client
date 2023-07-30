@@ -46,7 +46,9 @@ const ChildCanvas = ({
   };
 
   const handleMouseMove = (event) => {
-    if (!startDrag) return;
+    if (!startDrag) {
+      return;
+    }
 
     const offsetX = event.clientX - startDrag.x;
     const offsetY = event.clientY - startDrag.y;
