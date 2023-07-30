@@ -34,7 +34,6 @@ const ChildCanvas = ({
 
   const [position, setPosition] = useState({ x: left, y: top });
   const [startDrag, setStartDrag] = useState(null);
-  const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -49,19 +48,12 @@ const ChildCanvas = ({
     img.onload = () => {
       context.clearRect(0, 0, width, height);
       context.drawImage(img, 0, 0, width, height);
-
-      if (isSelected) {
-        context.strokeStyle = "red";
-        context.lineWidth = 2;
-        context.strokeRect(0, 0, width, height);
-      }
     };
 
     img.src = dataUrl;
-  }, [width, height, svgData, fillColor, isSelected]);
+  }, [width, height, svgData, fillColor]);
 
   const handleMouseDown = (event) => {
-    setIsSelected(true);
     setStartDrag({ x: event.clientX, y: event.clientY });
   };
 
@@ -85,24 +77,6 @@ const ChildCanvas = ({
     setStartDrag({ x: event.clientX, y: event.clientY });
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (canvasRef.current && !canvasRef.current.contains(event.target)) {
-        setIsSelected(false);
-      }
-    };
-
-    if (isSelected) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isSelected]);
-
   return (
     <div
       style={{
@@ -115,7 +89,7 @@ const ChildCanvas = ({
         ref={canvasRef}
         width={width}
         height={height}
-        style={{ position: "absolute", top, left, zIndex: Z_INDEX[unitType] }}
+        style={{ position: "absolute", zIndex: Z_INDEX[unitType] }}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
@@ -127,50 +101,6 @@ const ChildCanvas = ({
           return;
         }}
       />
-      {isSelected && (
-        <>
-          <div
-            style={{
-              position: "absolute",
-              top: "0px",
-              left: "0px",
-              width: "10px",
-              height: "10px",
-              backgroundColor: "blue",
-            }}
-          ></div>
-          <div
-            style={{
-              position: "absolute",
-              top: "0px",
-              right: "0px",
-              width: "10px",
-              height: "10px",
-              backgroundColor: "blue",
-            }}
-          ></div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: "0px",
-              left: "0px",
-              width: "10px",
-              height: "10px",
-              backgroundColor: "blue",
-            }}
-          ></div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: "0px",
-              right: "0px",
-              width: "10px",
-              height: "10px",
-              backgroundColor: "blue",
-            }}
-          ></div>
-        </>
-      )}
     </div>
   );
 };
