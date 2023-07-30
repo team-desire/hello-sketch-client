@@ -17,7 +17,12 @@ const ParentCanvas = ({ width, height, children }) => {
     <div className="flex flex-col items-center mt-8">
       <button onClick={handleDownload}>스케치 다운로드</button>
       <div style={{ position: "relative" }}>
-        <canvas ref={canvasRef} width={width} height={height} />
+        <canvas
+          ref={canvasRef}
+          width={width}
+          height={height}
+          style={{ position: "relative" }}
+        />
         {children}
       </div>
     </div>
