@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
@@ -7,6 +8,10 @@ import Carousel from "../../components/Carousel";
 import NavBar from "../../components/NavBar";
 
 const Home = () => {
+  const [sketches, setSketches] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const navigate = useNavigate();
@@ -50,6 +55,35 @@ const Home = () => {
     }
   };
 
+  const fetchSketches = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/sketches?per_page=3&page=${currentPage}`,
+      );
+      const sketchesData = await response.json();
+
+      if (sketchesData && sketchesData.sketchesUrl) {
+        setTotalPages(sketchesData.sketchesUrl.totalPages);
+        const sk = sketchesData.sketchesUrl.list.map((item) => item.imageUrl);
+        setSketches(sk);
+      }
+    } catch (error) {
+      console.error("Failed to fetch sketches:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchSketches();
+  }, [currentPage]);
+
+  const onPrevButtonClick = () => {
+    setCurrentPage((currentPage) => currentPage - 1);
+  };
+
+  const onNextButtonClick = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  };
+
   return (
     <div className="flex flex-col space-y-20">
       <NavBar />
@@ -62,7 +96,14 @@ const Home = () => {
             <h2 className="my-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Illustration Toolbox for Everyone
             </h2>
-            <Carousel />
+            <Carousel
+              items={sketches}
+              onPrevButtonClick={onPrevButtonClick}
+              onNextButtonClick={onNextButtonClick}
+              currentPage={currentPage}
+              totalPages={totalPages}
+            />
+            x
           </div>
           <div className="mt-2.5 sm:mx-auto sm:w-full sm:max-w-sm">
             <div>
