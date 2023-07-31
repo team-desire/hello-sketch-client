@@ -2,15 +2,26 @@ import { useState, useEffect } from "react";
 
 import NavBar from "../../components/NavBar";
 import SketchCard from "../../components/SketchCard";
+import Button from "../../components/Button";
 
 const MySketches = () => {
   const [sketches, setSketches] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(null);
+
+  const onPrevButtonClick = () => {
+    setCurrentPage((currentPage) => currentPage - 1);
+  };
+
+  const onNextButtonClick = () => {
+    setCurrentPage((currentPage) => currentPage + 1);
+  };
+
+  const userId = sessionStorage.getItem("userEmail");
 
   useEffect(() => {
     const fetchUserSketches = async () => {
       try {
-        const userId = sessionStorage.getItem("userEmail");
-
         if (!userId) {
           console.error("No email found");
 
@@ -21,21 +32,38 @@ const MySketches = () => {
           `http://localhost:3000/users/${userId}/sketches`,
         );
         const usersSkeches = await response.json();
-        setSketches(usersSkeches);
+        setSketches(usersSkeches.sketches.list);
       } catch (error) {
         console.error("Error", error.message);
       }
     };
 
     fetchUserSketches();
-  }, []);
+  }, [userId]);
+
+  const fetchSketches = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/users/${userId}/sketches?per_page=6&page=${currentPage}`,
+      );
+      const sketchesData = await response.json();
+      setTotalPages(sketchesData.sketches.totalPages);
+      setSketches(sketchesData.sketches.list);
+    } catch (error) {
+      console.error("Failed to fetch sketches:", error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchSketches();
+  }, [currentPage]);
 
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
       <main className="flex-grow grid grid-cols-3 grid-rows-2 gap-4 p-4">
         {sketches.length !== 0
-          ? sketches.sketches.list.map((sketch, index) => (
+          ? sketches.map((sketch, index) => (
               <SketchCard key={index} sketch={sketch} />
             ))
           : null}
