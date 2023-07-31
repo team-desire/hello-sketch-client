@@ -42,7 +42,6 @@ const Carousel = ({
                         elements={elements}
                         onElementChange={onElementChange}
                         unitType={unitType}
-                        isFromCarousel={true}
                       />
                     ) : (
                       <img
