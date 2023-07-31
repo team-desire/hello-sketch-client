@@ -46,7 +46,6 @@ const CanvasContainer = ({
     mergedCanvas.height = 700;
 
     const mergedContext = mergedCanvas.getContext("2d");
-
     mergedContext.fillStyle = "white";
     mergedContext.fillRect(0, 0, mergedCanvas.width, mergedCanvas.height);
 
