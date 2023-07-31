@@ -68,9 +68,46 @@ const MySketches = () => {
             ))
           : null}
       </main>
-      <footer className="bg-zinc-100 h-20 flex justify-center items-center">
-        <p>Footer</p>
-      </footer>
+      <nav aria-label="Page navigation example" className="flex justify-center">
+        <ul className="list-style-none flex">
+          <li>
+            <Button
+              style={
+                "relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400"
+              }
+              onClick={onPrevButtonClick}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </Button>
+          </li>
+          {[...Array(totalPages).keys()].map((pageNumber) => (
+            <li key={pageNumber} aria-current={pageNumber + 1 === currentPage}>
+              <Button
+                style={`relative block rounded bg-transparent px-3 py-1.5 text-sm transition-all duration-300 dark:text-neutral-400 ${
+                  pageNumber + 1 === currentPage
+                    ? "text-neutral-700 shadow-lg"
+                    : "text-neutral-500"
+                }`}
+                onClick={() => setCurrentPage(pageNumber + 1)}
+              >
+                {pageNumber + 1}
+              </Button>
+            </li>
+          ))}
+          <li>
+            <Button
+              style={
+                "relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-500 transition-all duration-300 dark:text-neutral-400"
+              }
+              onClick={onNextButtonClick}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </Button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
