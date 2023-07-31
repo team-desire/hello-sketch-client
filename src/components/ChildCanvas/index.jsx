@@ -1,20 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 
+import updateSvgData from "../../utils/updateSvgData";
+
 import { Z_INDEX } from "../../constants";
-
-const updateSvgData = (svgData, fillColor) => {
-  const parser = new DOMParser();
-  const svgDOM = parser.parseFromString(svgData, "image/svg+xml");
-  const targets = svgDOM.querySelectorAll(".target");
-
-  if (targets && targets.length > 0) {
-    targets.forEach((target) => target.setAttribute("fill", fillColor));
-  }
-
-  const updatedSvgData = new XMLSerializer().serializeToString(svgDOM);
-
-  return updatedSvgData;
-};
 
 const ChildCanvas = ({
   svgData,
@@ -28,7 +16,6 @@ const ChildCanvas = ({
   unitType,
   parentWidth,
   parentHeight,
-  isFromCarousel,
 }) => {
   const canvasRef = useRef(null);
 
@@ -94,11 +81,7 @@ const ChildCanvas = ({
         onMouseUp={handleMouseUp}
         onMouseMove={handleMouseMove}
         onClick={() => {
-          if (isFromCarousel) {
-            onElementChange(unitType, { ...elements[unitType], svgData });
-          }
-
-          return;
+          onElementChange(unitType, { ...elements[unitType], svgData });
         }}
       />
     </div>
