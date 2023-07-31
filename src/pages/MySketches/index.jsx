@@ -50,7 +50,7 @@ const MySketches = () => {
       setTotalPages(sketchesData.sketches.totalPages);
       setSketches(sketchesData.sketches.list);
     } catch (error) {
-      console.error("Failed to fetch sketches:", error.message);
+      console.error("Failed to fetch sketches", error.message);
     }
   };
 
@@ -68,7 +68,7 @@ const MySketches = () => {
             ))
           : null}
       </main>
-      <nav aria-label="Page navigation example" className="flex justify-center">
+      <nav className="flex justify-center">
         <ul className="list-style-none flex">
           <li>
             <Button
