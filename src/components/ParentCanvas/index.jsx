@@ -11,8 +11,6 @@ const ParentCanvas = ({ width, height, children }) => {
     context.fillRect(0, 0, width, height);
   }, [width, height]);
 
-  const handleDownload = () => {};
-
   return (
     <div className="flex flex-col items-center mt-8">
       <button onClick={handleDownload}>스케치 다운로드</button>
