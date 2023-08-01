@@ -25,6 +25,7 @@ const MySketches = () => {
         `http://localhost:3000/users/${userId}/sketches?per_page=6&page=${currentPage}`,
       );
       const sketchesData = await response.json();
+
       setTotalPages(sketchesData.sketches.totalPages);
       setSketches(sketchesData.sketches.list);
     } catch (error) {
