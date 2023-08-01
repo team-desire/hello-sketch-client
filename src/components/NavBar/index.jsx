@@ -10,13 +10,13 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const navigateToMySketches = () => {
-    setToShowDropDownMenu(!toShowDropDownMenu);
+    setToShowDropDownMenu(false);
 
     navigate("/my-sketches");
   };
 
   const navigateToHome = () => {
-    setToShowDropDownMenu(!toShowDropDownMenu);
+    setToShowDropDownMenu(false);
 
     navigate("/");
   };
@@ -27,6 +27,8 @@ const NavBar = () => {
 
       await signOut(auth);
       sessionStorage.clear();
+
+      setToShowDropDownMenu(false);
 
       navigate("/");
     } catch (error) {
