@@ -12,9 +12,10 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
 
+  const navigate = useNavigate();
+
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const navigate = useNavigate();
 
   const signInwithGoogle = async () => {
     try {
@@ -48,7 +49,8 @@ const Home = () => {
             console.log("Error");
           }
         };
-        await fetchData(token);
+
+        await fetchData();
       }
     } catch (error) {
       console.error("Error");
@@ -63,12 +65,12 @@ const Home = () => {
       const sketchesData = await response.json();
 
       if (sketchesData && sketchesData.sketchesUrl) {
-        const sketchImageUrl = sketchesData.sketchesUrl.list.map(
+        const sketchImageUrls = sketchesData.sketchesUrl.list.map(
           (item) => item.imageUrl,
         );
 
         setTotalPages(sketchesData.sketchesUrl.totalPages);
-        setSketches(sketchImageUrl);
+        setSketches(sketchImageUrls);
       }
     } catch (error) {
       console.error("Failed to fetch sketches:", error.message);
