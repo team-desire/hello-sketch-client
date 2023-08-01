@@ -8,8 +8,15 @@ const MySketches = () => {
   const [sketches, setSketches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState("");
 
   const userId = sessionStorage.getItem("userEmail");
+
+  const onImageClick = (imageUrl) => {
+    setModalImageUrl(imageUrl);
+    setModalOpen(true);
+  };
 
   const onPrevButtonClick = () => {
     setCurrentPage((currentPage) => currentPage - 1);
@@ -43,10 +50,27 @@ const MySketches = () => {
       <main className="flex-grow grid grid-cols-3 grid-rows-2 gap-4 p-4">
         {sketches.length !== 0
           ? sketches.map((sketch) => (
-              <SketchCard key={sketch.url} sketch={sketch} />
+              <SketchCard
+                key={sketch.url}
+                sketch={sketch}
+                onClick={() => onImageClick(sketch.url)}
+              />
             ))
           : null}
       </main>
+      {isModalOpen && (
+        <div
+          className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="bg-white p-4 rounded flex flex-col items-center"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <img src={modalImageUrl} alt="Sketch" />
+          </div>
+        </div>
+      )}
       <nav className="flex justify-center">
         <ul className="list-style-none flex">
           <li>
