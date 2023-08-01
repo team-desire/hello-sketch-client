@@ -19,28 +19,6 @@ const MySketches = () => {
 
   const userId = sessionStorage.getItem("userEmail");
 
-  useEffect(() => {
-    const fetchUserSketches = async () => {
-      try {
-        if (!userId) {
-          console.error("No email found");
-
-          return;
-        }
-
-        const response = await fetch(
-          `http://localhost:3000/users/${userId}/sketches`,
-        );
-        const usersSkeches = await response.json();
-        setSketches(usersSkeches.sketches.list);
-      } catch (error) {
-        console.error("Error", error.message);
-      }
-    };
-
-    fetchUserSketches();
-  }, [userId]);
-
   const fetchSketches = async () => {
     try {
       const response = await fetch(
