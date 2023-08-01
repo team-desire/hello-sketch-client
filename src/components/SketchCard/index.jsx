@@ -1,6 +1,6 @@
-const SketchCard = ({ sketch }) => {
+const SketchCard = ({ sketch, onClick }) => {
   return sketch ? (
-    <div className="border p-4 flex flex-col h-full">
+    <div className="border p-4 flex flex-col h-full" onClick={onClick}>
       <div className="p-4 flex-grow flex flex-col justify-center items-center bg-zinc-100">
         <img
           className="mb-4 max-h-full"
