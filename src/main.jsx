@@ -5,7 +5,6 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./config/firebase-config";
 
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Sketch from "./pages/Sketch";
 import MySketches from "./pages/MySketches";
 
