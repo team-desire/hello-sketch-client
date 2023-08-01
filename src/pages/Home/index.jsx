@@ -103,7 +103,6 @@ const Home = () => {
               currentPage={currentPage}
               totalPages={totalPages}
             />
-            x
           </div>
           <div className="mt-2.5 sm:mx-auto sm:w-full sm:max-w-sm">
             <div>
