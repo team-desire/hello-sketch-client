@@ -16,7 +16,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/sketch/new" element={<Sketch />} />
         <Route path="/sketch/:sketch_id" element={<Sketch />} />
         <Route path="/my-sketches" element={<MySketches />} />
