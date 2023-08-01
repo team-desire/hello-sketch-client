@@ -75,10 +75,6 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    fetchSketches();
-  }, [currentPage]);
-
   const onPrevButtonClick = () => {
     setCurrentPage((currentPage) => currentPage - 1);
   };
@@ -86,6 +82,10 @@ const Home = () => {
   const onNextButtonClick = () => {
     setCurrentPage((currentPage) => currentPage + 1);
   };
+
+  useEffect(() => {
+    fetchSketches();
+  }, [currentPage]);
 
   return (
     <div className="flex flex-col space-y-20">
