@@ -42,7 +42,7 @@ const MySketches = () => {
       <NavBar />
       <main className="flex-grow grid grid-cols-3 grid-rows-2 gap-4 p-4">
         {sketches.length !== 0
-          ? sketches.map((sketch, index) => (
+          ? sketches.map((sketch) => (
               <SketchCard key={sketch.url} sketch={sketch} />
             ))
           : null}
