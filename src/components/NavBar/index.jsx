@@ -40,12 +40,12 @@ const NavBar = () => {
 
   return (
     <nav className="bg-zinc-100">
-      <div className="mx-auto max-w-7xl px-2">
+      <div className="mx-auto max-w-8xl mx-10 px-2">
         <div className="relative flex h-16 items-center justify-between">
           <Button
             onClick={navigateToHome}
             style={
-              "bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
+              "bg-blue-500 hover:bg-blue-700 text-white rounded-md px-3 py-2 text-sm font-medium"
             }
           >
             Home
