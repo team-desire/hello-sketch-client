@@ -1,9 +1,5 @@
 const SketchCard = ({ sketch }) => {
-  if (!sketch) {
-    return <div className="border p-4 flex flex-col h-full"></div>;
-  }
-
-  return (
+  return sketch ? (
     <div className="border p-4 flex flex-col h-full">
       <div className="p-4 flex-grow flex flex-col justify-center items-center bg-zinc-100">
         <img
@@ -15,13 +11,15 @@ const SketchCard = ({ sketch }) => {
       <div className="flex flex-col flex-shrink">
         <h2 className="mb-2 text-lg">Title: {sketch.title} </h2>
         <p className="text-sm">
-          Created: {new Date(sketch.createdAt).toLocaleString()}{" "}
+          Created: {new Date(sketch.createdAt).toLocaleString()}
         </p>
         <p className="text-sm">
           Updated: {new Date(sketch.updatedAt).toLocaleString()}
         </p>
       </div>
     </div>
+  ) : (
+    <div className="border p-4 flex flex-col h-full"></div>
   );
 };
 
