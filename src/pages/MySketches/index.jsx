@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { BsDownload } from "react-icons/bs";
+
 import NavBar from "../../components/NavBar";
 import SketchCard from "../../components/SketchCard";
 import Button from "../../components/Button";
@@ -40,6 +42,25 @@ const MySketches = () => {
     }
   };
 
+  const handleImageDownload = async (s3Url) => {
+    try {
+      const response = await fetch(s3Url);
+      const blob = await response.blob();
+
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = "downloaded_file.png";
+
+      link.click();
+
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading the file:", error);
+    }
+  };
+
   useEffect(() => {
     fetchSketches();
   }, [currentPage]);
@@ -68,6 +89,25 @@ const MySketches = () => {
             onClick={(event) => event.stopPropagation()}
           >
             <img src={modalImageUrl} alt="Sketch" />
+            <div className="flex mt-4">
+              <Button
+                style={
+                  "flex items-center mr-20 rounded-md bg-blue-500 hover:bg-blue-700 px-3 py-2 text-md font-semibold text-white mb-10"
+                }
+                onClick={() => handleImageDownload(modalImageUrl)}
+              >
+                <BsDownload className="mr-2" />
+                Download
+              </Button>
+              <Button
+                style={
+                  "rounded-md bg-gray-500 hover:bg-gray-700 px-5 py-2 text-md font-semibold text-white mb-10"
+                }
+                onClick={() => setModalOpen(false)}
+              >
+                Close
+              </Button>
+            </div>
           </div>
         </div>
       )}
