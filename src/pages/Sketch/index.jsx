@@ -74,7 +74,6 @@ const Sketch = () => {
           sketchTitle={sketchTitle}
           onSketchTitleChange={handleSketchTitle}
           elements={elements}
-          onElementChange={handleElementChange}
         />
       </div>
     </div>
