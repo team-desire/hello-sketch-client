@@ -9,6 +9,8 @@ const MySketches = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(null);
 
+  const userId = sessionStorage.getItem("userEmail");
+
   const onPrevButtonClick = () => {
     setCurrentPage((currentPage) => currentPage - 1);
   };
@@ -16,8 +18,6 @@ const MySketches = () => {
   const onNextButtonClick = () => {
     setCurrentPage((currentPage) => currentPage + 1);
   };
-
-  const userId = sessionStorage.getItem("userEmail");
 
   const fetchSketches = async () => {
     try {
