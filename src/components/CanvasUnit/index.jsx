@@ -5,9 +5,7 @@ import updateSvgData from "../../utils/updateSvgData";
 import { Z_INDEX } from "../../constants";
 
 const CanvasUnit = forwardRef((props, ref) => {
-  const [startDrag, setStartDrag] = useState(false);
-
-  const canvasRef = useRef(null);
+  const [startDrag, setStartDrag] = useState(null);
 
   const {
     svgData,
@@ -24,7 +22,7 @@ const CanvasUnit = forwardRef((props, ref) => {
   };
 
   const handleMouseUp = () => {
-    setStartDrag(false);
+    setStartDrag(null);
   };
 
   const handleMouseMove = (event) => {
@@ -58,13 +56,7 @@ const CanvasUnit = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    if (ref) {
-      ref.current = canvasRef.current;
-    }
-  }, [ref]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = ref.current;
     const context = canvas.getContext("2d");
 
     const img = new Image();
@@ -109,22 +101,21 @@ const CanvasUnit = forwardRef((props, ref) => {
           </label>
         </span>
       </div>
-
       <div
         style={{
           position: "absolute",
           top: `${location.y}px`,
           left: `${location.x}px`,
         }}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseMove={handleMouseMove}
       >
         <canvas
-          ref={canvasRef}
+          ref={ref}
           width={location.width}
           height={location.height}
           style={{ position: "absolute", zIndex: Z_INDEX[unitType] }}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
         />
       </div>
     </>
