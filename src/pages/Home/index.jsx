@@ -63,9 +63,12 @@ const Home = () => {
       const sketchesData = await response.json();
 
       if (sketchesData && sketchesData.sketchesUrl) {
+        const sketchImageUrl = sketchesData.sketchesUrl.list.map(
+          (item) => item.imageUrl,
+        );
+
         setTotalPages(sketchesData.sketchesUrl.totalPages);
-        const sk = sketchesData.sketchesUrl.list.map((item) => item.imageUrl);
-        setSketches(sk);
+        setSketches(sketchImageUrl);
       }
     } catch (error) {
       console.error("Failed to fetch sketches:", error.message);
