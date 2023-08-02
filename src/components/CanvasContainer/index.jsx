@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { BsDownload, BsToggleOn, BsToggleOff } from "react-icons/bs";
 
@@ -7,6 +8,8 @@ import CanvasUnit from "../CanvasUnit";
 import Button from "../Button";
 
 const CanvasContainer = ({ style, elements }) => {
+  const navigate = useNavigate();
+
   const canvasRefs = {
     headCanvas: useRef(null),
     faceCanvas: useRef(null),
@@ -150,7 +153,11 @@ const CanvasContainer = ({ style, elements }) => {
           Download
         </Button>
         <Button
-          onClick={handleSketchSave}
+          onClick={() => {
+            handleSketchSave();
+
+            navigate("/my-sketches");
+          }}
           style={`
                   flex items-center 
                   justify-center bg-blue-500 
