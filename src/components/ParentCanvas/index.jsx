@@ -18,7 +18,7 @@ const ParentCanvas = ({ width, height, children }) => {
           ref={canvasRef}
           width={width}
           height={height}
-          style={{ position: "relative", margin: "20px" }}
+          style={{ position: "relative", marginBottom: "20px" }}
         />
         {children}
       </div>
