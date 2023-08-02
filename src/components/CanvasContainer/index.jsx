@@ -107,6 +107,9 @@ const CanvasContainer = ({ style, elements }) => {
       }
 
       const data = await response.json();
+
+      navigate("/my-sketches");
+
       console.log("Server response:", data.sketch.imageUrl);
     } catch (error) {
       console.error("Fetch error:", error);
@@ -153,18 +156,14 @@ const CanvasContainer = ({ style, elements }) => {
           Download
         </Button>
         <Button
-          onClick={() => {
-            handleSketchSave();
-
-            navigate("/my-sketches");
-          }}
+          onClick={handleSketchSave}
           style={`
-                  flex items-center 
-                  justify-center bg-blue-500 
-                  hover:bg-blue-700 
-                  text-white 
-                  rounded-md 
-                  px-3 py-2 
+                  flex items-center
+                  justify-center bg-blue-500
+                  hover:bg-blue-700
+                  text-white
+                  rounded-md
+                  px-3 py-2
                   text-md`}
         >
           Save
