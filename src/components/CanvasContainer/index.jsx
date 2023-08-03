@@ -6,6 +6,7 @@ import { BsDownload, BsToggleOn, BsToggleOff } from "react-icons/bs";
 import ParentCanvas from "../ParentCanvas";
 import CanvasUnit from "../CanvasUnit";
 import Button from "../Button";
+
 import { CONFIG } from "../../constants/config";
 
 const CanvasContainer = ({ style, elements }) => {
