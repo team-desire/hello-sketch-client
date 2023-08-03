@@ -6,6 +6,8 @@ import NavBar from "../../components/NavBar";
 import SketchCard from "../../components/SketchCard";
 import Button from "../../components/Button";
 
+import { CONFIG } from "../../constants/config";
+
 const MySketches = () => {
   const [sketches, setSketches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +33,7 @@ const MySketches = () => {
   const fetchSketches = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${userId}/sketches?per_page=6&page=${currentPage}`,
+        `${CONFIG.BACKEND_SERVER_URL}/users/${userId}/sketches?per_page=6&page=${currentPage}`,
       );
       const sketchesData = await response.json();
 

@@ -6,6 +6,8 @@ import UnitSelectorContainer from "../../components/UnitSelectorContainer";
 
 import getSvgDataArray from "../../utils/getSvgDataArray";
 
+import { CONFIG } from "../../constants/config";
+
 const Sketch = () => {
   const [elements, setElements] = useState({
     head: { svgData: null, fillColor: "#000000" },
@@ -27,7 +29,7 @@ const Sketch = () => {
 
       for (const unitType of unitTypes) {
         const response = await fetch(
-          `http://localhost:3000/units?unitType=${unitType}&page=1&per_page=1`,
+          `${CONFIG.BACKEND_SERVER_URL}/units?unitType=${unitType}&page=1&per_page=1`,
         );
 
         const { units } = await response.json();
