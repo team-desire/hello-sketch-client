@@ -7,6 +7,8 @@ import Button from "../../components/Button";
 import Carousel from "../../components/Carousel";
 import NavBar from "../../components/NavBar";
 
+import { CONFIG } from "../../constants/config";
+
 const Home = () => {
   const [sketches, setSketches] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +33,7 @@ const Home = () => {
 
         const fetchData = async () => {
           try {
-            const response = await fetch("http://localhost:3000/login", {
+            const response = await fetch(`${CONFIG.BACKEND_SERVER_URL}/login`, {
               method: "POST",
               headers: {
                 Authrorization: token,
@@ -60,7 +62,7 @@ const Home = () => {
   const fetchSketches = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/sketches?per_page=3&page=${currentPage}`,
+        `${CONFIG.BACKEND_SERVER_URL}/sketches?per_page=3&page=${currentPage}`,
       );
       const sketchesData = await response.json();
 

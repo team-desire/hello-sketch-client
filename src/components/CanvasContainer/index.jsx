@@ -6,6 +6,7 @@ import { BsDownload, BsToggleOn, BsToggleOff } from "react-icons/bs";
 import ParentCanvas from "../ParentCanvas";
 import CanvasUnit from "../CanvasUnit";
 import Button from "../Button";
+import { CONFIG } from "../../constants/config";
 
 const CanvasContainer = ({ style, elements }) => {
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ const CanvasContainer = ({ style, elements }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/users/${userId}/sketches`,
+        `${CONFIG.BACKEND_SERVER_URL}/users/${userId}/sketches`,
         {
           method: "POST",
           headers: {

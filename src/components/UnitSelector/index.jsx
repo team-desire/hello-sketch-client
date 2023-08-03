@@ -4,6 +4,8 @@ import ColorPicker from "../ColorPicker";
 import Carousel from "../Carousel";
 import getSvgDataArray from "../../utils/getSvgDataArray";
 
+import { CONFIG } from "../../constants/config";
+
 const UnitSelector = ({ elements, onElementChange, unitType, title }) => {
   const [unitData, setUnitData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,7 +16,7 @@ const UnitSelector = ({ elements, onElementChange, unitType, title }) => {
   const fetchUnits = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/units?unitType=${unitType}&page=${currentPage}&per_page=${ITEMS_PER_PAGE}`,
+        `${CONFIG.BACKEND_SERVER_URL}/units?unitType=${unitType}&page=${currentPage}&per_page=${ITEMS_PER_PAGE}`,
       );
 
       const { units } = await response.json();
