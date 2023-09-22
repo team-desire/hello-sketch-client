@@ -27,37 +27,38 @@ const Carousel = ({
           <AiOutlineCaretLeft size={40} />
         </Button>
         <div className="flex space-x-5">
-          {Array.from({ length: itemsPerPage }).map((_, index) => {
-            const item = items[index];
+          {totalPages !== 0 &&
+            Array.from({ length: itemsPerPage }).map((_, index) => {
+              const item = items[index];
 
-            return (
-              <div key={index} className="w-1/3">
-                {item && typeof item === "string" ? (
-                  <div className="bg-gray-200 rounded-lg w-52 h-52">
-                    {item.includes("<svg") ? (
-                      <ChildCanvas
-                        svgData={item}
-                        width={200}
-                        height={200}
-                        fillColor={fillColor}
-                        elements={elements}
-                        onElementChange={onElementChange}
-                        unitType={unitType}
-                      />
-                    ) : (
-                      <img
-                        src={item}
-                        alt={`Item ${index + 1}`}
-                        className="w-full h-full rounded-lg"
-                      />
-                    )}
-                  </div>
-                ) : (
-                  <div className="w-52 h-52 bg-gray-200 rounded-lg"></div>
-                )}
-              </div>
-            );
-          })}
+              return (
+                <div key={index} className="w-1/3">
+                  {item && typeof item === "string" ? (
+                    <div className="bg-gray-200 rounded-lg w-52 h-52">
+                      {item.includes("<svg") ? (
+                        <ChildCanvas
+                          svgData={item}
+                          width={200}
+                          height={200}
+                          fillColor={fillColor}
+                          elements={elements}
+                          onElementChange={onElementChange}
+                          unitType={unitType}
+                        />
+                      ) : (
+                        <img
+                          src={item}
+                          alt={`Item ${index + 1}`}
+                          className="w-full h-full rounded-lg"
+                        />
+                      )}
+                    </div>
+                  ) : (
+                    <div className="w-52 h-52 bg-gray-200 rounded-lg"></div>
+                  )}
+                </div>
+              );
+            })}
         </div>
         <Button
           onClick={onNextButtonClick}
