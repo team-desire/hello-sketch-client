@@ -22,6 +22,7 @@ const Carousel = ({
           onClick={onPrevButtonClick}
           disabled={currentPage === 1}
           style={`ml-8 ${"disabled:opacity-25"}`}
+          data-testid="Prev"
         >
           <AiOutlineCaretLeft size={40} />
         </Button>
@@ -62,6 +63,7 @@ const Carousel = ({
           onClick={onNextButtonClick}
           disabled={currentPage === totalPages}
           style={`mr-8 ${"disabled:opacity-25"}`}
+          data-testid="Next"
         >
           <AiOutlineCaretRight size={40} />
         </Button>
