@@ -139,6 +139,7 @@ const CanvasContainer = ({ style, elements }) => {
             onClick={() => {
               setSketchForm({ ...sketchForm, isPublic: !sketchForm.isPublic });
             }}
+            data-testid="toggleButton"
           >
             {sketchForm.isPublic ? (
               <BsToggleOn size={25} />
