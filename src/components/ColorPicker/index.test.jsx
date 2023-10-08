@@ -5,7 +5,7 @@ import ColorPicker from "./index";
 import { useState } from "react";
 
 describe("ColorPicker Component", () => {
-  test("[1.it must render] should render color input when to Show is true", () => {
+  test("should render color input when to Show is true", () => {
     render(
       <ColorPicker color="#ffffff" onColorChange={() => {}} toShow={true} />,
     );
@@ -15,7 +15,7 @@ describe("ColorPicker Component", () => {
     expect(colorInput).toBeInTheDocument();
   });
 
-  test("[2.test the output] renders the correct input type and value", () => {
+  test("renders the correct input type and value", () => {
     render(
       <ColorPicker color="#ffffff" onColorChange={() => {}} toShow={true} />,
     );
@@ -26,7 +26,7 @@ describe("ColorPicker Component", () => {
     expect(input.value).toBe("#ffffff");
   });
 
-  test("[3.test the states] does not render when toShow is false", () => {
+  test("does not render when toShow is false", () => {
     render(
       <ColorPicker color="#ffffff" onColorChange={() => {}} toShow={false} />,
     );
@@ -36,7 +36,7 @@ describe("ColorPicker Component", () => {
     expect(input).not.toBeInTheDocument();
   });
 
-  test("[4.test the events] calls onColorChange when color changes", () => {
+  test("calls onColorChange when color changes", () => {
     const mockOnChange = vi.fn();
 
     render(
@@ -54,7 +54,7 @@ describe("ColorPicker Component", () => {
     expect(mockOnChange).toHaveBeenCalled();
   });
 
-  test("[4.test the events] calls onColorChange and updates UI when color changes", () => {
+  test("calls onColorChange and updates UI when color changes", () => {
     const TestComponent = () => {
       const [color, setColor] = useState("#ffffff");
 
