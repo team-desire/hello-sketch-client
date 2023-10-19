@@ -19,12 +19,12 @@ describe("CanvasContainer Component", () => {
     render(<CanvasContainer style={mockStyle} elements={mockElements} />);
   });
 
-  test("renders expected child components and elements", () => {
+  test("should render expected child components and elements", () => {
     expect(screen.getByPlaceholderText("Title")).toBeInTheDocument();
     expect(screen.getByText("Public")).toBeInTheDocument();
   });
 
-  test("changes title in input field", () => {
+  test("should change title in input field", () => {
     const input = screen.getByPlaceholderText("Title");
 
     fireEvent.change(input, { target: { value: "New Title" } });
@@ -32,7 +32,7 @@ describe("CanvasContainer Component", () => {
     expect(input.value).toBe("New Title");
   });
 
-  test("toggles public/private", async () => {
+  test("should toggle between public and private", async () => {
     const publicText = screen.getByText(/Public/i);
 
     expect(publicText).toBeInTheDocument();
