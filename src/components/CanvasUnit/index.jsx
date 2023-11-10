@@ -109,6 +109,7 @@ const CanvasUnit = forwardRef((props, ref) => {
         }}
       >
         <canvas
+          data-testid="canvas"
           ref={ref}
           width={location.width}
           height={location.height}
