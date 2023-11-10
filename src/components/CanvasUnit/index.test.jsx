@@ -28,9 +28,8 @@ const mockRef = {
 
 describe("CanvasUnit", () => {
   test("should initialize with the correct size", () => {
-    const { container } = render(<CanvasUnit {...mockProps} ref={mockRef} />);
-
-    const canvas = container.querySelector("canvas");
+    const { getByTestId } = render(<CanvasUnit ref={mockRef} {...mockProps} />);
+    const canvas = getByTestId("canvas");
 
     expect(canvas).toBeInTheDocument();
     expect(canvas).toHaveAttribute("width", `${mockProps.location.width}`);
@@ -38,9 +37,8 @@ describe("CanvasUnit", () => {
   });
 
   test("should render a canvas and interact with mouse events", async () => {
-    const { container } = render(<CanvasUnit {...mockProps} ref={mockRef} />);
-
-    const canvas = container.querySelector("canvas");
+    const { getByTestId } = render(<CanvasUnit ref={mockRef} {...mockProps} />);
+    const canvas = getByTestId("canvas");
 
     expect(canvas).toBeInTheDocument();
 
