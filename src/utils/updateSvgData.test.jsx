@@ -10,10 +10,16 @@ describe("updateSvgData", () => {
 
   test("should update the fill color of target elements to the specified color", () => {
     const fillColor = "blue";
+    const parser = new DOMParser();
 
     const updatedSvgData = updateSvgData(sampleSvgData, fillColor);
+    const updatedSvgDom = parser.parseFromString(
+      updatedSvgData,
+      "image/svg+xml",
+    );
+    const targetElement = updatedSvgDom.querySelector(".target");
 
-    expect(updatedSvgData).toContain('fill="blue"');
+    expect(targetElement.getAttribute("fill")).toBe(fillColor);
   });
 
   test("should parse and serialize SVG data correctly", () => {
