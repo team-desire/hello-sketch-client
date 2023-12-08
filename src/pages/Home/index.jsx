@@ -34,8 +34,8 @@ const Home = () => {
           try {
             const response = await fetch(`${CONFIG.BACKEND_SERVER_URL}/login`, {
               method: "POST",
+              credentials: "include",
               headers: {
-                Authorization: token,
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({ email: user.email }),
