@@ -30,13 +30,12 @@ const Home = () => {
         sessionStorage.setItem("accessToken", token);
         sessionStorage.setItem("userPhotoURL", user.photoURL);
         sessionStorage.setItem("userEmail", user.email);
-
         const fetchData = async () => {
           try {
             const response = await fetch(`${CONFIG.BACKEND_SERVER_URL}/login`, {
               method: "POST",
+              credentials: "include",
               headers: {
-                Authrorization: token,
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({ email: user.email }),
