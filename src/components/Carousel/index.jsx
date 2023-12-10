@@ -27,7 +27,7 @@ const Carousel = ({
         </Button>
         <div className="flex space-x-5">
           {Array.from({ length: itemsPerPage }).map((_, index) => {
-            const item = items[index];
+            const item = items?.[index];
 
             return (
               <div key={index} className="w-1/3">
